@@ -48,3 +48,15 @@ mysql 입문 및 학습용 미니 프로젝트
     - 일시
     - 삭제버튼
   - 평점 추가
+
+# 기술 스택
+
+## Client
+
+- react
+- scss
+
+## Server
+
+- express
+- MySQL
