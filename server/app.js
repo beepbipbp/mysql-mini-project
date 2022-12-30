@@ -10,7 +10,7 @@ dotenv.config();
 
 const app = express();
 
-app.listen(8000, () => {
+app.listen(process.env.SERVER_PORT, () => {
 	console.log("server is on...");
 });
 
