@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 
+import Main from "./page/main.js";
+
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <div className="first-div">hello react!</div>,
+		element: <Main />,
 	},
 ]);
 

@@ -4,12 +4,20 @@ import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import cors from "cors";
 
 import router from "./routes/index.js";
 
 dotenv.config();
 
 const app = express();
+
+app.use(
+	cors({
+		origin: process.env.CLIENT_URL,
+		credentials: true,
+	})
+);
 
 app.listen(process.env.SERVER_PORT, () => {
 	console.log("server is on...");

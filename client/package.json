@@ -42,7 +42,7 @@
 			"last 1 safari version"
 		]
 	},
-	"type": "commonjs",
+	"type": "module",
 	"devDependencies": {
 		"@babel/parser": "^7.20.7"
 	}
