@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import SectionApi from "../api/section.api.js";
 
@@ -6,6 +6,7 @@ class Main extends React.Component {
 	state = {
 		sectionList: [],
 	};
+
 	async componentDidMount() {
 		const sectionList = await SectionApi.getSectionList();
 		this.setState({
@@ -13,9 +14,23 @@ class Main extends React.Component {
 		});
 	}
 
+	makeSectionList() {
+		const sectionList = this.state.sectionList.map((section) => {
+			return <li key={section.section_id}>{section.section_name}</li>;
+		});
+		return sectionList;
+	}
+
 	render() {
-		this.state.sectionList.forEach((v) => console.log(v));
-		return <div>{String(this.state.sectionList)}</div>;
+		return (
+			<Fragment>
+				<h1>Sections</h1>
+				<ul>
+					<li key="all">전체</li>
+					{this.makeSectionList()}
+				</ul>
+			</Fragment>
+		);
 	}
 }
 
