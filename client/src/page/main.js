@@ -16,7 +16,7 @@ function Main() {
 	}, []);
 
 	const makeSectionList = () => {
-		const sectionListDOM = sectionList.map((section) => {
+		const sectionListDom = sectionList.map((section) => {
 			return (
 				<li key={section.sectionId}>
 					<div
@@ -28,7 +28,7 @@ function Main() {
 				</li>
 			);
 		});
-		return sectionListDOM;
+		return sectionListDom;
 	};
 
 	return (
@@ -36,7 +36,7 @@ function Main() {
 			<h1>Sections</h1>
 			<ul>
 				<li key="all">
-					<div className="main__section_list" onClick={() => navigate("business-simple?section=all")}>
+					<div className="main__section_list" onClick={() => navigate("business-simple?section_name=all")}>
 						전체
 					</div>
 				</li>
