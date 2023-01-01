@@ -21,9 +21,7 @@ function Main() {
 				<li key={section.section_id}>
 					<div
 						className="main__section_list"
-						onClick={() =>
-							navigate("business-simple?section=" + section.section_name)
-						}
+						onClick={() => navigate("business-simple?section=" + section.section_name)}
 					>
 						{section.section_name}
 					</div>
@@ -38,10 +36,7 @@ function Main() {
 			<h1>Sections</h1>
 			<ul>
 				<li key="all">
-					<div
-						className="main__section_list"
-						onClick={() => navigate("business-simple?section=all")}
-					>
+					<div className="main__section_list" onClick={() => navigate("business-simple?section=all")}>
 						전체
 					</div>
 				</li>
