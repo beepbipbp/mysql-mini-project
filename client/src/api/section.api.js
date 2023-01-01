@@ -5,9 +5,9 @@ dotenv.config();
 
 class SectionApi {
 	static async getSectionList() {
-		const result = await axios.get(`${process.env.REACT_APP_API_SERVER_URL}/section`);
+		const response = await axios.get(`${process.env.REACT_APP_API_SERVER_URL}/section`);
 
-		return result.data.result.rows;
+		return response.data.result;
 	}
 }
 

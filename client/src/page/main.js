@@ -9,8 +9,8 @@ function Main() {
 
 	useEffect(() => {
 		const fetchSectionList = async () => {
-			const response = await SectionApi.getSectionList();
-			setSectionList(response);
+			const result = await SectionApi.getSectionList();
+			setSectionList(result);
 		};
 		fetchSectionList();
 	}, []);
@@ -18,12 +18,12 @@ function Main() {
 	const makeSectionList = () => {
 		const sectionListDOM = sectionList.map((section) => {
 			return (
-				<li key={section.section_id}>
+				<li key={section.sectionId}>
 					<div
 						className="main__section_list"
-						onClick={() => navigate("business-simple?section=" + section.section_name)}
+						onClick={() => navigate("business-simple?section=" + section.sectionName)}
 					>
-						{section.section_name}
+						{section.sectionName}
 					</div>
 				</li>
 			);
