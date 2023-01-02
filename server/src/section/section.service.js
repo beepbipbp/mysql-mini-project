@@ -5,7 +5,7 @@ class SectionService {
 		const rawSectionList = await SectionModel.getSectionList();
 		const result = rawSectionList.map((section) => {
 			return {
-				secionId: section.section_id,
+				sectionId: section.section_id,
 				sectionName: section.section_name,
 				floor: section.floor,
 			};
