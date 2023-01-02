@@ -21,7 +21,7 @@ function Main() {
 				<li key={section.sectionId}>
 					<div
 						className="main__section_list"
-						onClick={() => navigate("business-simple?section=" + section.sectionName)}
+						onClick={() => navigate("business-simple?section_name=" + section.sectionName)}
 					>
 						{section.sectionName}
 					</div>

@@ -7,9 +7,10 @@ function BusinessSimple() {
 	const navigate = useNavigate();
 	const [businessList, setBusinessList] = useState([]);
 
+	const sectionName = window.location.search.slice(1).split("=")[1];
+
 	useEffect(() => {
 		const fetchBusinessList = async () => {
-			const sectionName = window.location.search.slice(1).split("=")[1];
 			const result = await BusinessApi.getSimpleBusinessList(sectionName);
 			setBusinessList(result);
 		};
@@ -40,7 +41,7 @@ function BusinessSimple() {
 				<h2>메인 페이지로</h2>
 			</div>
 			<br />
-			<div className="business_link" onClick={() => navigate("/business-advanced")}>
+			<div className="business_link" onClick={() => navigate(`/business-advanced?section_name=${sectionName}`)}>
 				<h2>자세히</h2>
 			</div>
 			<br />
