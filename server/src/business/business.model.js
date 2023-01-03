@@ -28,6 +28,65 @@ class BusinessModel {
 
 		return result[0];
 	}
+
+	static async getBusinessDetails(id) {
+		const result = await dbConnection.execute(`
+			SELECT
+				B.business_id AS businessId,
+				S.section_id AS sectionId,
+				B.status AS status,
+				B.can_takeout AS can_takeout
+			FROM
+			  businesses B
+			JOIN sections S
+			  ON B.fk_section_id = S.section_id
+			WHERE
+				B.business_id = ${id}
+		`);
+
+		return result[0][0];
+	}
+
+	static async getBusinessMenuList(id) {
+		const result = await dbConnection.execute(`
+			SELECT
+			  M.menu_id AS menuId,
+				M.menu_name AS menuName,
+				M.kilocalories AS kilocalories,
+				M.price AS price,
+				M.likes AS likes
+			FROM
+				menus M
+			JOIN businesses B
+				ON M.fk_business_id = B.business_id
+			WHERE
+				B.business_id = ${id}
+			ORDER BY
+				menuId
+		`);
+
+		return result[0];
+	}
+
+	static async getBusinessRatingList(id) {
+		const result = await dbConnection.execute(`
+			SELECT
+			  R.rating_id AS ratingId,
+				R.stars AS stars,
+				R.comment AS comment,
+				R.created AS created
+			FROM
+				ratings R
+			JOIN businesses B
+				ON R.fk_business_id = B.business_id
+			WHERE
+				B.business_id = ${id}
+			ORDER BY
+				ratingId
+		`);
+
+		return result[0];
+	}
 }
 
 export default BusinessModel;

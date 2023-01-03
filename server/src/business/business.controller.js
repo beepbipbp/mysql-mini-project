@@ -8,6 +8,14 @@ class BusinessController {
 
 		res.status(200).json({ result });
 	}
+
+	static async getBusinessDetails(req, res) {
+		const { id } = req.params;
+
+		const [businessDetails, businessMenuList, businessRatingList] = await BusinessService.getBusinessDetails(id);
+
+		res.status(200).json({ result: { businessDetails, businessMenuList, businessRatingList } });
+	}
 }
 
 export default BusinessController;

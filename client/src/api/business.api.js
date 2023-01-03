@@ -25,6 +25,8 @@ class BusinessApi {
 
 		return response.data.result;
 	}
+
+	static async getBusinessDetails(businessId) {}
 }
 
 export default BusinessApi;
