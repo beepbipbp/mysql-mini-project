@@ -39,6 +39,14 @@ function BusinessAdvanced() {
 			}
 		});
 
+	useEffect(() => {
+		const fetchBusinessList = async () => {
+			const result = await BusinessApi.getAdvancedBusinessList(sectionName, floor, status, canTakeout, sortBy);
+			setBusinessList(result);
+		};
+		fetchBusinessList();
+	}, [navigate]);
+
 	const makeSelect = (type) => {
 		const sectionList = selectListEnum[type];
 
@@ -66,6 +74,25 @@ function BusinessAdvanced() {
 		));
 
 		return sectionSelectDom;
+	};
+
+	const makeBusinessList = () => {
+		const businessListDom = businessList.map((business) => {
+			return (
+				<tr key={business.businessId}>
+					<td>{business.businessId}</td>
+					<td className="business-list_link" onClick={() => navigate(`/business?id=${business.businessId}`)}>
+						{business.businessName}
+					</td>
+					<td>{business.sectionName}</td>
+					<td>{business.floor}</td>
+					<td>{business.status}</td>
+					<td>{business.canTakeout ? "가능" : "불가능"}</td>
+				</tr>
+			);
+		});
+
+		return businessListDom;
 	};
 
 	const handleChange = (event) => {
@@ -163,6 +190,21 @@ function BusinessAdvanced() {
 				</select>
 				<button type="submit">확인</button>
 			</form>
+			<br />
+			<h1>Business</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Business</th>
+						<th>Section</th>
+						<th>Floor</th>
+						<th>Status</th>
+						<th>Takeout</th>
+					</tr>
+				</thead>
+				<tbody>{makeBusinessList()}</tbody>
+			</table>
 		</Fragment>
 	);
 }
