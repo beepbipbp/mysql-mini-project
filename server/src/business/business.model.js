@@ -23,7 +23,7 @@ class BusinessModel {
 				${status ? `B.status = "${status}"` : ""}
 				  ${status && canTakeout ? "AND" : ""}
 				${canTakeout ? `B.can_takeout = ${canTakeout}` : ""}
-			${sortBy ? `ORDER BY ${businessColumnEnum[sortBy]}` : ""}
+			${sortBy ? `ORDER BY ${businessColumnEnum[sortBy]}` : "ORDER BY businessId"}
 		`);
 
 		return result[0];
