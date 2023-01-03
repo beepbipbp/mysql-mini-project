@@ -6,3 +6,12 @@
 .business-list_link {
 	cursor: pointer;
 }
+
+.business__form {
+	display: inline-block;
+	border: 1px solid gray;
+
+	select {
+		margin: 1rem;
+	}
+}
