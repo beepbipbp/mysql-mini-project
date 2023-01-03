@@ -72,7 +72,6 @@ function BusinessAdvanced() {
 		event.preventDefault();
 
 		const className = event.target.className;
-		console.log(sortBySelected);
 
 		switch (className) {
 			case "business__select--section-name":
