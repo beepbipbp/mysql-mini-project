@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "./page/main.js";
 import BusinessSimple from "./page/businessSimple.js";
 import BusinessAdvanced from "./page/businessAdvanced.js";
+import Business from "./page/business.js";
 
 const router = createBrowserRouter([
 	{
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
 	{
 		path: "/business-advanced",
 		element: <BusinessAdvanced />,
+	},
+	{
+		path: "/business",
+		element: <Business />,
 	},
 ]);
 
