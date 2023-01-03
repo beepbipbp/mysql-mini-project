@@ -7,12 +7,7 @@ import { selectListEnum, selectClassEnum, sortByEnum } from "../enum/selectEnum.
 function BusinessAdvanced() {
 	const navigate = useNavigate();
 
-	let sectionName;
-	let floor;
-	let status;
-	let canTakeout;
-	let sortBy;
-	const [businessList, setBusinessList] = useState([]);
+	let initialSectionName, initialFloor, initialStatus, initialCanTakeout, initialSortBy;
 
 	window.location.search
 		.slice(1)
@@ -21,22 +16,29 @@ function BusinessAdvanced() {
 			const [queryParameter, queryValue] = query.split("=");
 			switch (queryParameter) {
 				case "section_name":
-					sectionName = decodeURI(queryValue);
+					initialSectionName = decodeURI(queryValue);
 					break;
 				case "floor":
-					floor = queryValue;
+					initialFloor = queryValue;
 					break;
 				case "status":
-					status = queryValue;
+					initialStatus = queryValue;
 					break;
 				case "can_takeout":
-					canTakeout = queryValue;
+					initialCanTakeout = queryValue;
 					break;
 				case "sort_by":
-					sortBy = queryValue;
+					initialSortBy = queryValue;
 					break;
 			}
 		});
+
+	const [sectionName, setSectionName] = useState(initialSectionName);
+	const [floor, setFloor] = useState(initialFloor);
+	const [status, setStatus] = useState(initialStatus);
+	const [canTakeout, setCanTakeout] = useState(initialCanTakeout);
+	const [sortBy, setSortBy] = useState(initialSortBy);
+	const [businessList, setBusinessList] = useState([]);
 
 	useEffect(() => {
 		const fetchBusinessList = async () => {
@@ -101,19 +103,19 @@ function BusinessAdvanced() {
 
 		switch (className) {
 			case "business__select--section-name":
-				sectionName = event.target.value;
+				setSectionName(event.target.value);
 				break;
 			case "business__select--floor":
-				floor = event.target.value;
+				setFloor(event.target.value);
 				break;
 			case "business__select--status":
-				status = event.target.value;
+				setStatus(event.target.value);
 				break;
 			case "business__select--can-takeout":
-				canTakeout = event.target.value;
+				setCanTakeout(event.target.value);
 				break;
 			case "business__select--sort-by":
-				sortBy = event.target.value;
+				setSortBy(event.target.value);
 				break;
 		}
 	};
