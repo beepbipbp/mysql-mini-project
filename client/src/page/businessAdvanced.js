@@ -6,13 +6,12 @@ import { selectListEnum, selectClassEnum, sortByEnum } from "../enum/selectEnum.
 
 function BusinessAdvanced() {
 	const navigate = useNavigate();
-	let sectionName, floor, status, canTakeout, sortBy;
 
-	const [sectionNameSelected, setSectionNameSelected] = useState("");
-	const [floorSelected, setFloorSelected] = useState("");
-	const [statusSelected, setStatusSelected] = useState("");
-	const [canTakeoutSelected, setCanTakeoutSelected] = useState("");
-	const [sortBySelected, setSortBySelected] = useState("");
+	let sectionName;
+	let floor;
+	let status;
+	let canTakeout;
+	let sortBy;
 	const [businessList, setBusinessList] = useState([]);
 
 	window.location.search
@@ -45,7 +44,7 @@ function BusinessAdvanced() {
 			setBusinessList(result);
 		};
 		fetchBusinessList();
-	}, [navigate]);
+	}, []);
 
 	const makeSelect = (type) => {
 		const sectionList = selectListEnum[type];
@@ -102,19 +101,19 @@ function BusinessAdvanced() {
 
 		switch (className) {
 			case "business__select--section-name":
-				setSectionNameSelected(event.target.value);
+				sectionName = event.target.value;
 				break;
 			case "business__select--floor":
-				setFloorSelected(event.target.value);
+				floor = event.target.value;
 				break;
 			case "business__select--status":
-				setStatusSelected(event.target.value);
+				status = event.target.value;
 				break;
 			case "business__select--can-takeout":
-				setCanTakeoutSelected(event.target.value);
+				canTakeout = event.target.value;
 				break;
 			case "business__select--sort-by":
-				setSortBySelected(event.target.value);
+				sortBy = event.target.value;
 				break;
 		}
 	};
@@ -122,19 +121,15 @@ function BusinessAdvanced() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		const sectionNameQuery = sectionNameSelected
-			? `section_name=${sectionNameSelected}`
-			: `section_name=${sectionName}`;
-		const floorQuery = floorSelected ? `&floor=${floorSelected}` : floor ? `&floor=${floor}` : "";
-		const statusQuery = statusSelected ? `&status=${statusSelected}` : status ? `&status=${status}` : "";
-		const canTakeoutQuery = canTakeoutSelected
-			? `&can_takeout=${canTakeoutSelected}`
-			: canTakeout
-			? `&can_takeout=${canTakeout}`
-			: "";
-		const sortByQuery = sortBySelected ? `&sort_by=${sortBySelected}` : sortBy ? `$sort_by=${sortBy}` : "";
+		const sectionNameQuery = `section_name=${sectionName}`;
+		const floorQuery = floor ? `&floor=${floor}` : "";
+		const statusQuery = status ? `&status=${status}` : "";
+		const canTakeoutQuery = canTakeout ? `&can_takeout=${canTakeout}` : "";
+		const sortByQuery = sortBy ? `&sort_by=${sortBy}` : "";
 
-		navigate(`/business-advanced?${sectionNameQuery}${floorQuery}${statusQuery}${canTakeoutQuery}${sortByQuery}`);
+		window.location.replace(
+			`/business-advanced?${sectionNameQuery}${floorQuery}${statusQuery}${canTakeoutQuery}${sortByQuery}`
+		);
 	};
 
 	return (
@@ -151,7 +146,7 @@ function BusinessAdvanced() {
 				<select
 					className="business__select--section-name"
 					key={"sectionName_" + sectionName}
-					value={sectionNameSelected ? sectionNameSelected : sectionName}
+					value={sectionName}
 					onChange={(e) => handleChange(e)}
 				>
 					{makeSelect("sectionName")}
@@ -159,7 +154,7 @@ function BusinessAdvanced() {
 				<select
 					className="business__select--floor"
 					key={floor ? "floor_" + floor : "floor_all"}
-					value={floorSelected ? floorSelected : floor ? floor : "all"}
+					value={floor ? floor : "all"}
 					onChange={(e) => handleChange(e)}
 				>
 					{makeSelect("floor")}
@@ -167,7 +162,7 @@ function BusinessAdvanced() {
 				<select
 					className="business__select--status"
 					key={status ? "status_" + status : "status_all"}
-					value={statusSelected ? statusSelected : status ? status : "all"}
+					value={status ? status : "all"}
 					onChange={(e) => handleChange(e)}
 				>
 					{makeSelect("status")}
@@ -175,7 +170,7 @@ function BusinessAdvanced() {
 				<select
 					className="business__select--can-takeout"
 					key={canTakeout ? "canTakeout_" + canTakeout : "canTakeout_all"}
-					value={canTakeoutSelected ? canTakeoutSelected : canTakeout ? canTakeout : "all"}
+					value={canTakeout ? canTakeout : "all"}
 					onChange={(e) => handleChange(e)}
 				>
 					{makeSelect("canTakeout")}
@@ -183,7 +178,7 @@ function BusinessAdvanced() {
 				<select
 					className="business__select--sort-by"
 					key={sortBy ? "sortBy_" + sortBy : "sortBy_id"}
-					value={sortBySelected ? sortBySelected : sortBy ? sortBy : "id"}
+					value={sortBy ? sortBy : "id"}
 					onChange={(e) => handleChange(e)}
 				>
 					{makeSelect("sortBy")}

@@ -13,14 +13,14 @@ class BusinessApi {
 	}
 
 	static async getAdvancedBusinessList(sectionName, floor, status, canTakeout, sortBy) {
-		const sectionNameQuery = sectionName === "all" ? "" : `?section_name=${sectionName}`;
-		const floorQuery = floor ? `&floor=${floor}` : "";
-		const statusQuery = status ? `&status=${status}` : "";
-		const canTakeoutQuery = canTakeout ? `&can_takeout=${canTakeout}` : "";
+		const sectionNameQuery = sectionName === "all" ? "" : `section_name=${sectionName}`;
+		const floorQuery = floor && floor !== "all" ? `&floor=${floor}` : "";
+		const statusQuery = status && status !== "all" ? `&status=${status}` : "";
+		const canTakeoutQuery = canTakeout && canTakeout !== "all" ? `&can_takeout=${canTakeout}` : "";
 		const sortByQuery = sortBy ? `&sort_by=${sortBy}` : "";
 
 		const response = await axios.get(
-			`${process.env.REACT_APP_API_SERVER_URL}/business${sectionNameQuery}${floorQuery}${statusQuery}${canTakeoutQuery}${sortByQuery}`
+			`${process.env.REACT_APP_API_SERVER_URL}/business?${sectionNameQuery}${floorQuery}${statusQuery}${canTakeoutQuery}${sortByQuery}`
 		);
 
 		return response.data.result;
