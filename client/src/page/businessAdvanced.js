@@ -69,7 +69,10 @@ function BusinessAdvanced() {
 	};
 
 	const handleChange = (event) => {
+		event.preventDefault();
+
 		const className = event.target.className;
+		console.log(sortBySelected);
 
 		switch (className) {
 			case "business__select--section-name":
@@ -90,6 +93,24 @@ function BusinessAdvanced() {
 		}
 	};
 
+	const handleSubmit = (event) => {
+		event.preventDefault();
+
+		const sectionNameQuery = sectionNameSelected
+			? `section_name=${sectionNameSelected}`
+			: `section_name=${sectionName}`;
+		const floorQuery = floorSelected ? `&floor=${floorSelected}` : floor ? `&floor=${floor}` : "";
+		const statusQuery = statusSelected ? `&status=${statusSelected}` : status ? `&status=${status}` : "";
+		const canTakeoutQuery = canTakeoutSelected
+			? `&can_takeout=${canTakeoutSelected}`
+			: canTakeout
+			? `&can_takeout=${canTakeout}`
+			: "";
+		const sortByQuery = sortBySelected ? `&sort_by=${sortBySelected}` : sortBy ? `$sort_by=${sortBy}` : "";
+
+		navigate(`/business-advanced?${sectionNameQuery}${floorQuery}${statusQuery}${canTakeoutQuery}${sortByQuery}`);
+	};
+
 	return (
 		<Fragment>
 			<div className="business_link" onClick={() => navigate("/")}>
@@ -100,7 +121,7 @@ function BusinessAdvanced() {
 				<h2>간단히</h2>
 			</div>
 			<br />
-			<form className="business__form">
+			<form className="business__form" onSubmit={(event) => handleSubmit(event)}>
 				<select
 					className="business__select--section-name"
 					key={"sectionName_" + sectionName}
@@ -141,6 +162,7 @@ function BusinessAdvanced() {
 				>
 					{makeSelect("sortBy")}
 				</select>
+				<button type="submit">확인</button>
 			</form>
 		</Fragment>
 	);
