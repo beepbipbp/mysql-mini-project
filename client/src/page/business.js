@@ -51,6 +51,7 @@ function Business() {
 	};
 
 	const makeMenuList = () => {
+		const handleClick = (event) => {};
 		const menuListDom = businessMenuList.map((menu) => {
 			return (
 				<tr key={menu.menuId}>
@@ -60,7 +61,10 @@ function Business() {
 					<td>
 						{menu.likes}
 						<span className="likes__button">
-							<button value="plus"> + </button>
+							<button value="plus" onClick={(event) => handleClick(event)}>
+								{" "}
+								+{" "}
+							</button>
 							<button value="minus"> - </button>
 						</span>
 					</td>
