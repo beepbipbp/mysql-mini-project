@@ -33,7 +33,7 @@ function Main() {
 
 	return (
 		<Fragment>
-			<h1>Sections</h1>
+			<h1>음식 종류</h1>
 			<ul>
 				<li key="all">
 					<div className="main__section_list" onClick={() => navigate("business-simple?section_name=all")}>

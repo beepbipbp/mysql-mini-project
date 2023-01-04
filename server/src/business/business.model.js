@@ -33,9 +33,10 @@ class BusinessModel {
 		const result = await dbConnection.execute(`
 			SELECT
 				B.business_id AS businessId,
-				S.section_id AS sectionId,
+				B.business_name AS businessName,
+				S.section_name AS sectionName,
 				B.status AS status,
-				B.can_takeout AS can_takeout
+				B.can_takeout AS canTakeout
 			FROM
 			  businesses B
 			JOIN sections S

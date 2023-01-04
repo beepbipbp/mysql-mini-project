@@ -16,11 +16,11 @@ const selectClassEnum = {
 
 const sortByEnum = {
 	id: "ID",
-	business_name: "Business Name",
-	section_name: "Section",
-	floor: "Floor",
-	status: "Status",
-	can_takeout: "Takeout",
+	business_name: "업소명",
+	section_name: "음식 종류",
+	floor: "층",
+	status: "영업 상태",
+	can_takeout: "포장 가능 여부",
 };
 
 export { selectListEnum, selectClassEnum, sortByEnum };

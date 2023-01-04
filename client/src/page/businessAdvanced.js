@@ -193,11 +193,11 @@ function BusinessAdvanced() {
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>Business</th>
-						<th>Section</th>
-						<th>Floor</th>
-						<th>Status</th>
-						<th>Takeout</th>
+						<th>업소명</th>
+						<th>음식 종류</th>
+						<th>층</th>
+						<th>영업 상태</th>
+						<th>포장 가능 여부</th>
 					</tr>
 				</thead>
 				<tbody>{makeBusinessList()}</tbody>

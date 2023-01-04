@@ -26,7 +26,11 @@ class BusinessApi {
 		return response.data.result;
 	}
 
-	static async getBusinessDetails(businessId) {}
+	static async getBusinessDetails(businessId) {
+		const response = await axios.get(`${process.env.REACT_APP_API_SERVER_URL}/business/${businessId}`);
+
+		return response.data.result;
+	}
 }
 
 export default BusinessApi;
