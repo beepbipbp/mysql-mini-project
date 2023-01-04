@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import BusinessApi from "../api/business.api.js";
+import MenuApi from "../api/menu.api.js";
 
 function Business() {
 	const navigate = useNavigate();
@@ -51,8 +52,16 @@ function Business() {
 	};
 
 	const makeMenuList = () => {
-		const handleClick = (event) => {};
-		const menuListDom = businessMenuList.map((menu) => {
+		const menuListDom = businessMenuList.map((menu, index) => {
+			const handleClick = async (event) => {
+				event.preventDefault();
+				const type = event.target.value;
+
+				const newLikes = await MenuApi.updateLikes(menu.menuId, type);
+				const newBusinessMenuList = businessMenuList.slice();
+				newBusinessMenuList[index].likes = newLikes;
+				setBusinessMenuList(newBusinessMenuList);
+			};
 			return (
 				<tr key={menu.menuId}>
 					<td>{menu.menuName}</td>
@@ -65,7 +74,10 @@ function Business() {
 								{" "}
 								+{" "}
 							</button>
-							<button value="minus"> - </button>
+							<button value="minus" onClick={(event) => handleClick(event)}>
+								{" "}
+								-{" "}
+							</button>
 						</span>
 					</td>
 				</tr>
