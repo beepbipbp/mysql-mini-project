@@ -38,3 +38,12 @@ table {
 .likes__button {
 	float: right;
 }
+
+.business-details__submit-rating-form {
+	display: inline-block;
+	border: 1px solid gray;
+
+	input {
+		width: 30rem;
+	}
+}

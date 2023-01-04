@@ -11,6 +11,8 @@ function Business() {
 	const [businessDetails, setBusinessDetails] = useState({});
 	const [businessMenuList, setBusinessMenuList] = useState([]);
 	const [businessRatingList, setBusinessRatingList] = useState([]);
+	const [starsSelected, setStarsSelected] = useState(1);
+	const [comment, setComment] = useState("");
 
 	const businessId = window.location.search.slice(1).split("=")[1];
 
@@ -107,7 +109,9 @@ function Business() {
 
 	const makeRatingList = () => {
 		const ratingListDom = businessRatingList.map((rating) => {
-			const handleClick = async () => {
+			const handleClick = async (event) => {
+				event.preventDefault();
+
 				const newRatingList = await RatingApi.deleteRating(rating.ratingId);
 				setBusinessRatingList(newRatingList);
 			};
@@ -117,7 +121,7 @@ function Business() {
 					<td>{rating.comment}</td>
 					<td>{new Date(rating.created).toLocaleDateString()}</td>
 					<td>
-						<button onClick={() => handleClick()}>삭제</button>
+						<button onClick={(event) => handleClick(event)}>삭제</button>
 					</td>
 				</tr>
 			);
@@ -141,6 +145,39 @@ function Business() {
 		);
 	};
 
+	const makeSubmitRatingForm = () => {
+		const handleSubmit = async (event) => {
+			event.preventDefault();
+
+			const newRatingList = await BusinessApi.createRating(businessId, starsSelected, comment);
+			setBusinessRatingList(newRatingList);
+		};
+
+		const handleStarsChange = (event) => {
+			event.preventDefault();
+			setStarsSelected(event.target.value);
+		};
+
+		const handleCommentChange = (event) => {
+			event.preventDefault();
+			setComment(event.target.value);
+		};
+
+		return (
+			<form className="business-details__submit-rating-form" onSubmit={(event) => handleSubmit(event)}>
+				<select value={starsSelected} onChange={(event) => handleStarsChange(event)}>
+					<option value={1}>⭐️</option>
+					<option value={2}>⭐️⭐️</option>
+					<option value={3}>⭐️⭐️⭐️</option>
+					<option value={4}>⭐️⭐️⭐️⭐️</option>
+					<option value={5}>⭐️⭐️⭐️⭐️⭐️</option>
+				</select>
+				<input value={comment} onChange={(event) => handleCommentChange(event)}></input>
+				<button type="submit">제출</button>
+			</form>
+		);
+	};
+
 	return (
 		<Fragment>
 			<div className="business_link" onClick={() => navigate("/")}>
@@ -156,6 +193,8 @@ function Business() {
 			{makeMenuList()}
 			<br />
 			{makeRatingList()}
+			<br />
+			{makeSubmitRatingForm()}
 		</Fragment>
 	);
 }
