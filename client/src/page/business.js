@@ -50,6 +50,41 @@ function Business() {
 		);
 	};
 
+	const makeMenuList = () => {
+		const menuListDom = businessMenuList.map((menu) => {
+			return (
+				<tr key={menu.menuId}>
+					<td>{menu.menuName}</td>
+					<td>{menu.price}</td>
+					<td>{menu.kilocalories}</td>
+					<td>
+						{menu.likes}
+						<span className="likes__button">
+							<button value="plus"> + </button>
+							<button value="minus"> - </button>
+						</span>
+					</td>
+				</tr>
+			);
+		});
+		return (
+			<Fragment>
+				<h1>메뉴</h1>
+				<table>
+					<thead>
+						<tr>
+							<th className="table-index">메뉴명</th>
+							<th className="table-index">가격(원)</th>
+							<th className="table-index">칼로리(kcal)</th>
+							<th className="table-index">좋아요</th>
+						</tr>
+					</thead>
+					<tbody>{menuListDom}</tbody>
+				</table>
+			</Fragment>
+		);
+	};
+
 	return (
 		<Fragment>
 			<div className="business_link" onClick={() => navigate("/")}>
@@ -61,6 +96,8 @@ function Business() {
 			</div>
 			<br />
 			{makeBusinessDetails()}
+			<br />
+			{makeMenuList()}
 		</Fragment>
 	);
 }

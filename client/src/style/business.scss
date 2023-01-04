@@ -24,9 +24,17 @@ table {
 	th {
 		padding: 0 0.3rem 0 0.3rem;
 	}
+
+	button {
+		margin: 0 0.2rem 0 0.2rem;
+	}
 }
 
 .table-index {
 	background: #dddddd;
 	font-weight: bold;
+}
+
+.likes__button {
+	float: right;
 }

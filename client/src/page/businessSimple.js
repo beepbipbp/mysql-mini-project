@@ -32,7 +32,23 @@ function BusinessSimple() {
 			);
 		});
 
-		return businessListDom;
+		return (
+			<Fragment>
+				<h1>Business</h1>
+				<table>
+					<thead>
+						<tr>
+							<th className="table-index">업소명</th>
+							<th className="table-index">음식 종류</th>
+							<th className="table-index">층</th>
+							<th className="table-index">영업 상태</th>
+							<th className="table-index">포장 가능 여부</th>
+						</tr>
+					</thead>
+					<tbody>{businessListDom}</tbody>
+				</table>
+			</Fragment>
+		);
 	};
 
 	return (
@@ -45,19 +61,7 @@ function BusinessSimple() {
 				<h2>자세히</h2>
 			</div>
 			<br />
-			<h1>Business</h1>
-			<table>
-				<thead>
-					<tr>
-						<th>업소명</th>
-						<th>음식 종류</th>
-						<th>층</th>
-						<th>영업 상태</th>
-						<th>포장 가능 여부</th>
-					</tr>
-				</thead>
-				<tbody>{makeBusinessList()}</tbody>
-			</table>
+			{makeBusinessList()}
 		</Fragment>
 	);
 }
