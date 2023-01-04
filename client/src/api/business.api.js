@@ -31,6 +31,15 @@ class BusinessApi {
 
 		return response.data.result;
 	}
+
+	static async createRating(businessId, stars, comment) {
+		const response = await axios.post(`${process.env.REACT_APP_API_SERVER_URL}/business/${businessId}/rating`, {
+			stars,
+			comment,
+		});
+
+		return response.data.result;
+	}
 }
 
 export default BusinessApi;

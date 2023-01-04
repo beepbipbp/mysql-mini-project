@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import BusinessApi from "../api/business.api.js";
 import MenuApi from "../api/menu.api.js";
+import RatingApi from "../api/rating.api.js";
 
 function Business() {
 	const navigate = useNavigate();
@@ -106,14 +107,17 @@ function Business() {
 
 	const makeRatingList = () => {
 		const ratingListDom = businessRatingList.map((rating) => {
-			const handleClick = (event) => {};
+			const handleClick = async () => {
+				const newRatingList = await RatingApi.deleteRating(rating.ratingId);
+				setBusinessRatingList(newRatingList);
+			};
 			return (
 				<tr key={rating.ratingId}>
 					<td>{"⭐️".repeat(rating.stars)}</td>
 					<td>{rating.comment}</td>
 					<td>{new Date(rating.created).toLocaleDateString()}</td>
 					<td>
-						<button onClick={(event) => handleClick(event)}>삭제</button>
+						<button onClick={() => handleClick()}>삭제</button>
 					</td>
 				</tr>
 			);
