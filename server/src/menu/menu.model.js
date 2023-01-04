@@ -22,7 +22,7 @@ class MenuModel {
         menu_id = ${id}
     `);
 
-		return result[0][0];
+		return result[0][0].likes;
 	}
 }
 

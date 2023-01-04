@@ -5,9 +5,9 @@ dotenv.config();
 
 class MenuApi {
 	static async updateLikes(id, type) {
-		const response = await axios.post(`${process.env.REACT_APP_API_SERVER_URL}/menu/${id}/likes?type=${type}`);
+		const response = await axios.patch(`${process.env.REACT_APP_API_SERVER_URL}/menu/${id}/likes?type=${type}`);
 
-		return response.data.result.likes;
+		return response.data.result;
 	}
 }
 

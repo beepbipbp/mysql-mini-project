@@ -16,6 +16,15 @@ class BusinessController {
 
 		res.status(200).json({ result: { businessDetails, businessMenuList, businessRatingList } });
 	}
+
+	static async createRating(req, res) {
+		const { id } = req.params;
+		const { stars, comment } = req.body;
+
+		const result = await BusinessService.createRating(id, stars, comment);
+
+		res.status(201).json({ result });
+	}
 }
 
 export default BusinessController;

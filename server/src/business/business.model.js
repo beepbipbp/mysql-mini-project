@@ -88,6 +88,16 @@ class BusinessModel {
 
 		return result[0];
 	}
+
+	static async createRating(id, stars, comment) {
+		await dbConnection.execute(`
+		  INSERT INTO
+				ratings
+			  (fk_business_id, stars, comment)
+			VALUES
+				(${id}, ${stars}, "${comment}")
+		`);
+	}
 }
 
 export default BusinessModel;
