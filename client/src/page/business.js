@@ -55,11 +55,14 @@ function Business() {
 		const menuListDom = businessMenuList.map((menu, index) => {
 			const handleClick = async (event) => {
 				event.preventDefault();
+
 				const type = event.target.value;
 
 				const newLikes = await MenuApi.updateLikes(menu.menuId, type);
+
 				const newBusinessMenuList = businessMenuList.slice();
 				newBusinessMenuList[index].likes = newLikes;
+
 				setBusinessMenuList(newBusinessMenuList);
 			};
 			return (
@@ -101,6 +104,39 @@ function Business() {
 		);
 	};
 
+	const makeRatingList = () => {
+		const ratingListDom = businessRatingList.map((rating) => {
+			const handleClick = (event) => {};
+			return (
+				<tr key={rating.ratingId}>
+					<td>{"⭐️".repeat(rating.stars)}</td>
+					<td>{rating.comment}</td>
+					<td>{new Date(rating.created).toLocaleDateString()}</td>
+					<td>
+						<button onClick={(event) => handleClick(event)}>삭제</button>
+					</td>
+				</tr>
+			);
+		});
+
+		return (
+			<Fragment>
+				<h1>평가</h1>
+				<table>
+					<thead>
+						<tr>
+							<th className="table-index">평점</th>
+							<th className="table-index">코멘트</th>
+							<th className="table-index">작성 날짜</th>
+							<th className="table-index">삭제</th>
+						</tr>
+					</thead>
+					<tbody>{ratingListDom}</tbody>
+				</table>
+			</Fragment>
+		);
+	};
+
 	return (
 		<Fragment>
 			<div className="business_link" onClick={() => navigate("/")}>
@@ -114,6 +150,8 @@ function Business() {
 			{makeBusinessDetails()}
 			<br />
 			{makeMenuList()}
+			<br />
+			{makeRatingList()}
 		</Fragment>
 	);
 }
