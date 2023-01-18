@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import BusinessApi from "../api/business.api.js";
-import { selectListEnum, selectClassEnum, sortByEnum } from "../enum/selectEnum.js";
+import { selectListDictionary, selectClassDictionary, sortByDictionary } from "../dictionary/selectDictionary.js";
 
 function BusinessAdvanced() {
 	const navigate = useNavigate();
@@ -88,10 +88,10 @@ function BusinessAdvanced() {
 
 	const makeForm = () => {
 		const makeSelect = (type) => {
-			const sectionList = selectListEnum[type];
+			const sectionList = selectListDictionary[type];
 
 			const sectionSelectDom = sectionList.map((s) => (
-				<option className={selectClassEnum[type]} key={type + "_" + s} value={s}>
+				<option className={selectClassDictionary[type]} key={type + "_" + s} value={s}>
 					{(() => {
 						if (s === "all") {
 							return "전체";
@@ -106,7 +106,7 @@ function BusinessAdvanced() {
 								case "canTakeout":
 									return s === "1" ? "가능" : "불가능";
 								case "sortBy":
-									return sortByEnum[s];
+									return sortByDictionary[s];
 							}
 						}
 					})()}
