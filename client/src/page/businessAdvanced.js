@@ -118,6 +118,7 @@ function BusinessAdvanced() {
 
 		return (
 			<form className="business__form" onSubmit={(event) => handleSubmit(event)}>
+				음식 종류:
 				<select
 					className="business__select--section-name"
 					key={"sectionName_" + sectionName}
@@ -126,6 +127,7 @@ function BusinessAdvanced() {
 				>
 					{makeSelect("sectionName")}
 				</select>
+				층:
 				<select
 					className="business__select--floor"
 					key={floor ? "floor_" + floor : "floor_all"}
@@ -134,6 +136,7 @@ function BusinessAdvanced() {
 				>
 					{makeSelect("floor")}
 				</select>
+				영업 상태:
 				<select
 					className="business__select--status"
 					key={status ? "status_" + status : "status_all"}
@@ -142,6 +145,7 @@ function BusinessAdvanced() {
 				>
 					{makeSelect("status")}
 				</select>
+				포장 가능 여부:
 				<select
 					className="business__select--can-takeout"
 					key={canTakeout ? "canTakeout_" + canTakeout : "canTakeout_all"}
@@ -150,6 +154,7 @@ function BusinessAdvanced() {
 				>
 					{makeSelect("canTakeout")}
 				</select>
+				정렬 기준:
 				<select
 					className="business__select--sort-by"
 					key={sortBy ? "sortBy_" + sortBy : "sortBy_id"}
